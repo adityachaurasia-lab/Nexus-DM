@@ -83,7 +83,7 @@ export default function LoginPage() {
       setStep(2);
       setCooldown(60);
       // Auto-focus first digit input box
-      setTimeout(() => otpRefs[0].current?.focus(), 100);
+      setTimeout(() => otpRefs[0]?.current?.focus(), 100);
     } catch (error) {
       toast('Network connection failed. Please retry.', 'error');
     } finally {
@@ -104,13 +104,13 @@ export default function LoginPage() {
 
     // Auto-focus next input box
     if (value !== '' && index < 5) {
-      otpRefs[index + 1].current?.focus();
+      otpRefs[index + 1]?.current?.focus();
     }
   };
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Backspace' && otpDigits[index] === '' && index > 0) {
-      otpRefs[index - 1].current?.focus();
+      otpRefs[index - 1]?.current?.focus();
     }
   };
 
@@ -137,7 +137,7 @@ export default function LoginPage() {
         toast(res.error || 'Invalid verification code', 'error');
         // Clear inputs on failure
         setOtpDigits(['', '', '', '', '', '']);
-        otpRefs[0].current?.focus();
+        otpRefs[0]?.current?.focus();
       } else {
         toast('Authentication successful! Welcome to NEXUS DM.', 'success');
         router.push('/dashboard');
