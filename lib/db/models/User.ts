@@ -28,6 +28,8 @@ export interface IUser extends Document {
     ip: string;
     userAgent: string;
   }>;
+  termsAccepted: boolean;
+  termsAcceptedAt?: Date;
   lastActiveAt?: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -36,7 +38,7 @@ export interface IUser extends Document {
 const UserSchema = new Schema<IUser>(
   {
     email: { type: String, unique: true, index: true, required: true },
-    phone: { type: String, sparse: true },
+    phone: { type: String, sparse: true, unique: true, index: true },
     name: String,
     avatar: String,
     authProviders: [
@@ -66,6 +68,8 @@ const UserSchema = new Schema<IUser>(
         userAgent: String,
       },
     ],
+    termsAccepted: { type: Boolean, default: false },
+    termsAcceptedAt: Date,
     lastActiveAt: Date,
   },
   { timestamps: true }
