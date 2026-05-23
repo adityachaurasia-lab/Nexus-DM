@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomInt } from 'crypto';
 import { redis } from '@/lib/cache/redis';
 import { sendWhatsAppOTP } from '@/lib/utils/whatsapp';
-import { logger } from '@/lib/utils/logger';
+import { createLogger } from '@/lib/utils/logger';
+
+const logger = createLogger('auth');
 
 export async function POST(req: NextRequest) {
   try {
@@ -44,17 +46,17 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Failed to deliver OTP message' }, { status: 500 });
       }
 
-      logger.info('auth', `OTP successfully requested and dispatched for ${cleanPhone}`);
+      logger.info(`OTP successfully requested and dispatched for ${cleanPhone}`);
     } else {
       // Mock flow if Upstash Redis is missing
       const code = '123456';
-      logger.warn('auth', `Redis client is unconfigured. Simulating dispatch code ${code} for phone ${cleanPhone}`);
+      logger.warn(`Redis client is unconfigured. Simulating dispatch code ${code} for phone ${cleanPhone}`);
       await sendWhatsAppOTP(cleanPhone, code);
     }
 
     return NextResponse.json({ message: 'Verification code sent successfully.' }, { status: 200 });
   } catch (error: any) {
-    logger.error('auth', `Error executing OTP send API: ${error?.message || error}`);
+    logger.error(`Error executing OTP send API: ${error?.message || error}`);
     return NextResponse.json({ error: 'Internal server error occurred.' }, { status: 500 });
   }
 }

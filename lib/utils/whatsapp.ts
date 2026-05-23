@@ -1,4 +1,6 @@
-import { logger } from './logger';
+import { createLogger } from './logger';
+
+const logger = createLogger('auth');
 
 const PHONE_REGEX = /^\+[1-9]\d{1,14}$/;
 
@@ -8,7 +10,7 @@ const PHONE_REGEX = /^\+[1-9]\d{1,14}$/;
  */
 export async function sendWhatsAppOTP(phone: string, code: string): Promise<boolean> {
   if (!PHONE_REGEX.test(phone)) {
-    logger.error('auth', `Invalid phone format provided: ${phone}`);
+    logger.error(`Invalid phone format provided: ${phone}`);
     throw new Error('Phone number must be in E.164 format (e.g. +1234567890)');
   }
 
@@ -18,7 +20,6 @@ export async function sendWhatsAppOTP(phone: string, code: string): Promise<bool
 
   if (!token || !phoneId) {
     logger.warn(
-      'auth',
       `WhatsApp API credentials missing. Dev Sandbox Mock Delivery:\n` +
       `┌────────────────────────────────────────┐\n` +
       `│ [WHATSAPP OTP]                         │\n` +
@@ -75,14 +76,14 @@ export async function sendWhatsAppOTP(phone: string, code: string): Promise<bool
     const data = await response.json();
 
     if (!response.ok) {
-      logger.error('auth', `Meta Graph API request failed: ${JSON.stringify(data)}`);
+      logger.error(`Meta Graph API request failed: ${JSON.stringify(data)}`);
       return false;
     }
 
-    logger.info('auth', `OTP successfully dispatched via WhatsApp Cloud API to ${phone}`);
+    logger.info(`OTP successfully dispatched via WhatsApp Cloud API to ${phone}`);
     return true;
   } catch (error) {
-    logger.error('auth', `Failed to send WhatsApp verification message: ${error}`);
+    logger.error(`Failed to send WhatsApp verification message: ${error}`);
     return false;
   }
 }
