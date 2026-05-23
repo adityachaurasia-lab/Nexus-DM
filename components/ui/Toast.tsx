@@ -73,7 +73,7 @@ const toastColors: Record<ToastType, string> = {
   info: 'bg-[var(--bg-elevated)] border-[var(--accent-secondary)] text-[var(--accent-secondary)]',
 };
 
-function Toast({ item, onClose }: { item: ToastItem; onClose: () => void }) {
+export function Toast({ item, onClose }: { item: ToastItem; onClose: () => void }) {
   const Icon = icons[item.type];
 
   return (
