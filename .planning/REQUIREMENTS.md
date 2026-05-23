@@ -14,8 +14,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **FOUND-03**: User can toggle between Solar Paper (light) and Void Matter (dark) themes with smooth transition
 - [x] **FOUND-04**: Custom fonts (Cabinet Grotesk, Fraunces, Sora, JetBrains Mono, Bebas Neue) load with font-display: swap
 - [x] **FOUND-05**: Fluid type scaling with clamp() works across viewport sizes
-- [ ] **FOUND-06**: MongoDB connection pooling is configured with Mongoose ODM
-- [ ] **FOUND-07**: Upstash Redis client is configured for serverless use
+- [x] **FOUND-06**: MongoDB connection pooling is configured with Mongoose ODM
+- [x] **FOUND-07**: Upstash Redis client is configured for serverless use
 - [x] **FOUND-08**: Global CSS reset and design tokens are defined in globals.css
 - [x] **FOUND-09**: Tailwind CSS 3.x is configured with custom design tokens
 - [ ] **FOUND-10**: Component anatomy rules (cards, buttons, inputs, modals, toasts) are implemented as UI primitives
