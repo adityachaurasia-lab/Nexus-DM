@@ -9,15 +9,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Foundation
 
-- [ ] **FOUND-01**: Next.js 14 App Router project initializes with TypeScript strict mode
+- [x] **FOUND-01**: Next.js 14 App Router project initializes with TypeScript strict mode
 - [ ] **FOUND-02**: Design system CSS variables (colors, spacing, typography, motion tokens) load for both themes
 - [ ] **FOUND-03**: User can toggle between Solar Paper (light) and Void Matter (dark) themes with smooth transition
 - [ ] **FOUND-04**: Custom fonts (Cabinet Grotesk, Fraunces, Sora, JetBrains Mono, Bebas Neue) load with font-display: swap
 - [ ] **FOUND-05**: Fluid type scaling with clamp() works across viewport sizes
 - [ ] **FOUND-06**: MongoDB connection pooling is configured with Mongoose ODM
 - [ ] **FOUND-07**: Upstash Redis client is configured for serverless use
-- [ ] **FOUND-08**: Global CSS reset and design tokens are defined in globals.css
-- [ ] **FOUND-09**: Tailwind CSS 3.x is configured with custom design tokens
+- [x] **FOUND-08**: Global CSS reset and design tokens are defined in globals.css
+- [x] **FOUND-09**: Tailwind CSS 3.x is configured with custom design tokens
 - [ ] **FOUND-10**: Component anatomy rules (cards, buttons, inputs, modals, toasts) are implemented as UI primitives
 
 ### Authentication
