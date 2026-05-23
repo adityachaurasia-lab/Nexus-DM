@@ -23,7 +23,7 @@ export function ThemeToggle() {
   }
 
   const currentIndex = themes.findIndex((t) => t.value === theme);
-  const nextTheme = themes[(currentIndex + 1) % themes.length];
+  const nextTheme = themes[(currentIndex + 1) % themes.length] || themes[0]!;
   const CurrentIcon = themes[currentIndex]?.icon ?? Sun;
 
   return (
@@ -34,7 +34,7 @@ export function ThemeToggle() {
                  transition-all duration-fast ease-spring
                  cursor-pointer"
       aria-label={`Switch to ${nextTheme.label}`}
-      title={`Current: ${themes[currentIndex]?.label}. Click for ${nextTheme.label}`}
+      title={`Current: ${themes[currentIndex]?.label || 'System'}. Click for ${nextTheme.label}`}
     >
       <AnimatePresence mode="wait">
         <motion.div
