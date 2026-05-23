@@ -1,17 +1,15 @@
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { connectDB } from '@/lib/db/mongodb';
 import { User } from '@/lib/db/models/User';
 import { ConsentLog } from '@/lib/db/models/ConsentLog';
 import { redis } from '@/lib/cache/redis';
+import { authConfig } from './auth.config';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || 'mock-google-client-id',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'mock-google-client-secret',
-    }),
+    ...authConfig.providers,
     CredentialsProvider({
       id: 'credentials',
       name: 'WhatsAppOTP',
@@ -25,8 +23,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           throw new Error('Missing phone number or verification code');
         }
 
-        const phone = credentials.phone;
-        const code = credentials.code;
+        const phone = credentials.phone as string;
+        const code = credentials.code as string;
 
         // Verify OTP against Upstash Redis
         let storedCode: string | null = null;
@@ -81,11 +79,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  session: {
-    strategy: 'jwt',
-  },
   callbacks: {
-    async signIn({ user, account, profile }) {
+    ...authConfig.callbacks,
+    async signIn({ user, account }) {
       if (account?.provider === 'google') {
         if (!user.email) return false;
 
@@ -130,8 +126,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return session;
     },
-  },
-  pages: {
-    signIn: '/login',
   },
 });

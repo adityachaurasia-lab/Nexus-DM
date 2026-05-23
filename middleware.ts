@@ -1,4 +1,7 @@
-import { auth } from './auth';
+import NextAuth from 'next-auth';
+import { authConfig } from './auth.config';
+
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
@@ -10,7 +13,7 @@ export default auth((req) => {
   if (isDashboard && !isLoggedIn) {
     // Redirect to login page
     const loginUrl = new URL('/login', req.nextUrl.origin);
-    // Keep reference of current URL for post-login redirect if needed
+    // Keep reference of current URL for post-login redirect
     loginUrl.searchParams.set('callbackUrl', req.nextUrl.href);
     return Response.redirect(loginUrl);
   }
