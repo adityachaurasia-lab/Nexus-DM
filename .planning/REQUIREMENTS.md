@@ -22,14 +22,14 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can sign up / sign in with Google OAuth via NextAuth v5
-- [ ] **AUTH-02**: User can sign in with WhatsApp OTP (phone → OTP via WhatsApp Cloud API → verify → JWT)
-- [ ] **AUTH-03**: OTP is stored in Redis with 5-minute TTL and 3-attempt rate limit
-- [ ] **AUTH-04**: JWT is signed with secure algorithm, HttpOnly + Secure + SameSite=Strict cookies
-- [ ] **AUTH-05**: CSRF protection is active on all mutation endpoints
-- [ ] **AUTH-06**: Auth middleware protects all dashboard routes
-- [ ] **AUTH-07**: Consent checkbox (Privacy Policy + Terms) is required before first authentication
-- [ ] **AUTH-08**: Login/register pages show animated brand panel (left) + clean form (right) split layout
+- [x] **AUTH-01**: User can sign up / sign in with Google OAuth via NextAuth v5
+- [x] **AUTH-02**: User can sign in with WhatsApp OTP (phone → OTP via WhatsApp Cloud API → verify → JWT)
+- [x] **AUTH-03**: OTP is stored in Redis with 5-minute TTL and 3-attempt rate limit
+- [x] **AUTH-04**: JWT is signed with secure algorithm, HttpOnly + Secure + SameSite=Strict cookies
+- [x] **AUTH-05**: CSRF protection is active on all mutation endpoints
+- [x] **AUTH-06**: Auth middleware protects all dashboard routes
+- [x] **AUTH-07**: Consent checkbox (Privacy Policy + Terms) is required before first authentication
+- [x] **AUTH-08**: Login/register pages show animated brand panel (left) + clean form (right) split layout
 
 ### Landing Page
 
@@ -170,11 +170,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Security
 
-- [ ] **SEC-01**: AES-256-GCM encryption for all platform credentials
-- [ ] **SEC-02**: Security headers configured (CSP, HSTS, X-Frame-Options, etc.)
-- [ ] **SEC-03**: CSRF protection on all mutations
-- [ ] **SEC-04**: Token rotation on sensitive operations
-- [ ] **SEC-05**: Suspicious login detection (new IP/device → email alert)
+- [x] **SEC-01**: AES-256-GCM encryption for all platform credentials
+- [x] **SEC-02**: Security headers configured (CSP, HSTS, X-Frame-Options, etc.)
+- [x] **SEC-03**: CSRF protection on all mutations
+- [x] **SEC-04**: Token rotation on sensitive operations
+- [x] **SEC-05**: Suspicious login detection (new IP/device → email alert)
 
 ### Real-Time
 
